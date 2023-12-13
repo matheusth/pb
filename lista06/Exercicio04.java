@@ -1,32 +1,44 @@
-/**
- * Exercicio04
- */
+import java.util.Scanner;
+
 public class Exercicio04 {
+
     public static void main(String[] args) {
-        String[] emails = {"a@gmail.com","a@yahoo.com","a@bool.com","b@teste.com", "b@gmail.com", "a@hotmail.com", "b@yahoo.com"};
-        for (int a : listaEmails(emails)) {
-            System.out.println(a);
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Matriz:");
+        int[][] matriz = lerMatriz(3, 3, sc);
+        System.out.println("Digite um número para buscar na matriz");
+        int n = sc.nextInt();
+
+        if (matrizContem(matriz, n)) {
+            System.out.println("A Matriz contem o número " + n + ".");
+        } else {
+            System.out.println("A Matriz não contem o número " + n + ".");
         }
     }
 
-    public static int[] listaEmails(String[] emails) {
-        String[] servicos = { "Gmail", "Hotmail", "Yahoo", "Demais Servicos" };
-        int[] resultado = new int[servicos.length];
-        for (int i = 0; i < emails.length; i++) {
-            String servico = emails[i].split("@")[1].split("\\.")[0];
-            System.out.println(servico);
-            boolean encontrado = false;
-            for (int j = 0; j < servicos.length - 1; j++) {
-                if (servicos[j].toLowerCase().equals(servico)) {
-                    encontrado = true;
-                    resultado[j]++;
-                }
-            }
-            if (!encontrado) {
-                resultado[resultado.length - 1]++;
+    private static boolean matrizContem(int[][] matriz, int n) {
+        for (int i = 0; i < matriz.length; i++) {
+           for (int j = 0; j < matriz[i].length; j++) {
+               if(matriz[i][j] == n) {
+                   return true;
+               }
+           } 
+        }
+        return false;
+    }
+
+    public static int[][] lerMatriz(int lines, int cols, Scanner sc) {
+        int matriz[][] = new int[lines][cols];
+
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                System.out.printf("Digite o valor do elemento (%d, %d): ", i, j);
+                matriz[i][j] = sc.nextInt();
+
             }
         }
 
-        return resultado;
+        return matriz;
+
     }
 }
