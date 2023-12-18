@@ -8,7 +8,7 @@ public class Exercicio01 {
         int[] sorteio = new int[10];
 
         for (int i = 0; i < sorteio.length; i++) {
-           sorteio[i] = 1 + (int)(Math.random() * 60);
+           sorteio[i] = 1 + (int)(Math.random() * 59);
         }
         System.out.println("Cartela:");
         imprimir(cartela);
